@@ -1,0 +1,106 @@
+---
+title: "data"
+description: |
+  The data being used.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+```{r}
+speedData <- read.csv("sprint_speed2021.csv")
+hittingData <- read.csv("expected_stats2021.csv")
+rawData <- full_join(hittingData, speedData, by = "player_id")
+rawData2021 <- rawData %>%
+  rename(woba_diff = est_woba_minus_woba_diff, 
+         ba_diff = est_ba_minus_ba_diff, 
+         slg_diff = est_slg_minus_slg_diff) %>%
+  mutate(year = "Adjusted") %>%
+  select(player_id, woba_diff, ba_diff, slg_diff, sprint_speed, year) %>% 
+  drop_na()
+rawData2021
+
+
+speedData <- read.csv("sprint_speed2020.csv")
+hittingData <- read.csv("expected_stats2020.csv")
+rawData <- full_join(hittingData, speedData, by = "player_id")
+rawData2020 <- rawData %>%
+  rename(woba_diff = est_woba_minus_woba_diff, 
+         ba_diff = est_ba_minus_ba_diff, 
+         slg_diff = est_slg_minus_slg_diff) %>%
+  mutate(year = "Adjusted") %>%
+  select(player_id, woba_diff, ba_diff, slg_diff, sprint_speed, year) %>% 
+  drop_na()
+rawData2020
+
+
+speedData <- read.csv("sprint_speed2019.csv")
+hittingData <- read.csv("expected_stats2019.csv")
+rawData <- full_join(hittingData, speedData, by = "player_id")
+rawData2019 <- rawData %>%
+  rename(woba_diff = est_woba_minus_woba_diff, 
+         ba_diff = est_ba_minus_ba_diff, 
+         slg_diff = est_slg_minus_slg_diff) %>%
+  mutate(year = "Not Adjusted") %>%
+  select(player_id, woba_diff, ba_diff, slg_diff, sprint_speed, year) %>% 
+  drop_na()
+rawData2019
+
+
+speedData <- read.csv("sprint_speed2018.csv")
+hittingData <- read.csv("expected_stats2018.csv")
+rawData <- full_join(hittingData, speedData, by = "player_id")
+rawData2018 <- rawData %>%
+  rename(woba_diff = est_woba_minus_woba_diff, 
+         ba_diff = est_ba_minus_ba_diff, 
+         slg_diff = est_slg_minus_slg_diff) %>%
+  mutate(year = "Not Adjusted") %>%
+  select(player_id, woba_diff, ba_diff, slg_diff, sprint_speed, year) %>%  
+  drop_na()
+rawData2018
+
+speedData <- read.csv("sprint_speed2017.csv")
+hittingData <- read.csv("expected_stats2017.csv")
+rawData <- full_join(hittingData, speedData, by = "player_id")
+rawData2017 <- rawData %>%
+  rename(woba_diff = est_woba_minus_woba_diff, 
+         ba_diff = est_ba_minus_ba_diff, 
+         slg_diff = est_slg_minus_slg_diff) %>%
+  mutate(year = "Not Adjusted") %>%
+  select(player_id, woba_diff, ba_diff, slg_diff, sprint_speed, year) %>% 
+  drop_na()
+rawData2017
+
+speedData <- read.csv("sprint_speed2016.csv")
+hittingData <- read.csv("expected_stats2016.csv")
+rawData <- full_join(hittingData, speedData, by = "player_id")
+rawData2016 <- rawData %>%
+  rename(woba_diff = est_woba_minus_woba_diff, 
+         ba_diff = est_ba_minus_ba_diff, 
+         slg_diff = est_slg_minus_slg_diff) %>%
+  mutate(year = "Not Adjusted") %>%
+  select(player_id, woba_diff, ba_diff, slg_diff, sprint_speed, year) %>% 
+  drop_na()
+rawData2016
+
+speedData <- read.csv("sprint_speed2015.csv")
+hittingData <- read.csv("expected_stats2015.csv")
+rawData <- full_join(hittingData, speedData, by = "player_id")
+rawData2015 <- rawData %>%
+  rename(woba_diff = est_woba_minus_woba_diff, 
+         ba_diff = est_ba_minus_ba_diff, 
+         slg_diff = est_slg_minus_slg_diff) %>%
+  mutate(year = "Not Adjusted") %>%
+  select(player_id, woba_diff, ba_diff, slg_diff, sprint_speed, year) %>%  
+  drop_na()
+rawData2015
+
+totalData <- rbind(rawData2015,rawData2016,rawData2017,rawData2018,rawData2019,rawData2020,rawData2021)
+dataNoAdjustment <- rbind(rawData2015,rawData2016,rawData2017,rawData2018,rawData2019)
+dataAfterAdjustment <- rbind(rawData2020,rawData2021)
+totalData
+dataNoAdjustment
+dataAfterAdjustment
+```
